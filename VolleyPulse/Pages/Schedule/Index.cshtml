@@ -1,0 +1,91 @@
+﻿@page
+@model UI.Pages.Schedule.IndexModel
+
+<div class="container mt-4">
+
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h2>Schedule</h2>
+
+        <a asp-page="/Schedule/CreateEvent"
+           class="btn btn-primary">
+            + Create Practice
+        </a>
+    </div>
+
+ <div class="d-flex justify-content-between align-items-center mb-4">
+            <a class="btn btn-primary"
+            asp-page="/Schedule/Index"
+            asp-route-week="@(Model.CurrentWeek - 1)">
+            ← Previous
+            </a>
+ 
+            <h3>Week @Model.CurrentWeek</h3>
+ 
+            <a class="btn btn-primary"
+            asp-page="/Schedule/Index"
+            asp-route-week="@(Model.CurrentWeek + 1)">
+            Next →
+            </a>
+ </div>
+ 
+        @foreach (var practice in Model.Practices)
+        {
+            <div>
+                @practice.date.ToShortDateString()
+                @practice.location
+            </div>
+        }
+
+       
+
+    </div>
+
+    <div class="row g-3">
+
+        @foreach (var practice in Model.Practices)
+        {
+            <div class="col-md-4">
+
+                <div class="schedule-card shadow-sm h-100">
+
+                    <div class="schedule-card-header bg-primary text-white">
+                        Practice
+                    </div>
+
+                    <div class="card-body">
+
+                        <h5>
+                            @practice.date.ToString("dddd")
+                        </h5>
+
+                        <p class="mb-1">
+                            📅 @practice.date.ToString("dd/MM/yyyy")
+                        </p>
+
+                        <p class="mb-1">
+                            ⏰ @practice.startTime.ToString(@"hh\:mm")
+                            -
+                            @practice.endTime.ToString(@"hh\:mm")
+                        </p>
+
+                        <p class="mb-1">
+                            📍 @practice.location
+                        </p>
+
+                        @if (!string.IsNullOrEmpty(practice.notes))
+                        {
+                            <p>
+                                📝 @practice.notes
+                            </p>
+                        }
+
+                    </div>
+
+                </div>
+
+            </div>
+        }
+
+    </div>
+
+</div>

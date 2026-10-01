@@ -1,0 +1,11 @@
+<Solution>
+  <Folder Name="/01. UI/">
+    <Project Path="VolleyPulse/UI.csproj" />
+  </Folder>
+  <Folder Name="/02. Logic/">
+    <Project Path="Logic/Logic.csproj" />
+  </Folder>
+  <Folder Name="/03. DAL/">
+    <Project Path="DAL/DAL.csproj" />
+  </Folder>
+</Solution>

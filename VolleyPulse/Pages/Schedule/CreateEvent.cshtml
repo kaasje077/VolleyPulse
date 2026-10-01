@@ -1,0 +1,49 @@
+﻿@page
+@model UI.Pages.Schedule.CreatePracticeModel
+@{
+    ViewData["Title"] = "Schedule";
+}
+
+<h2>Create Practice</h2>
+
+<form method="post">
+
+    <div class="mb-3">
+        <label asp-for="date" class="form-label">Date</label>
+        <input asp-for="date" type="date" class="form-control" />
+        <span asp-validation-for="date" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="startTime" class="form-label">Start Time</label>
+        <input asp-for="startTime" type="time" class="form-control" />
+        <span asp-validation-for="startTime" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="endTime" class="form-label">End Time</label>
+        <input asp-for="endTime" type="time" class="form-control" />
+        <span asp-validation-for="endTime" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="location" class="form-label">Location</label>
+        <input asp-for="location" class="form-control" />
+        <span asp-validation-for="location" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="notes" class="form-label">Notes</label>
+        <textarea asp-for="notes" class="form-control" rows="4"></textarea>
+        <span asp-validation-for="notes" class="text-danger"></span>
+    </div>
+
+    <button type="submit" class="btn btn-primary">
+        Create Practice
+    </button>
+
+</form>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
