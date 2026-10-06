@@ -26,5 +26,10 @@ namespace Logic
         {
             return _repo.GetAllPractices();
         }
+
+        public Event GetEventById(int eventId)
+        {
+            return _repo.GetEventById(eventId);
+        }
     }
 }

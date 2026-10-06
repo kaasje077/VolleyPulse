@@ -2,7 +2,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Logic.Interfaces;
 
-namespace UI.Pages.Schedule
+namespace UI.Pages.Member.Admin
 {
     public class CreatePracticeModel : PageModel
     {

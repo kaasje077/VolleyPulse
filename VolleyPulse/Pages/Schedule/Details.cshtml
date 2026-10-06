@@ -1,0 +1,60 @@
+﻿@page
+@model UI.Pages.Schedule.DetailsModel
+
+<div class="container mt-4">
+
+    <div class="card shadow">
+
+        <div class="schedule-card-header">
+            <h2>Event Details</h2>
+        </div>
+
+        <div class="card-body">
+
+            <div class="mb-3">
+                <strong>Date:</strong>
+                @Model.Event.date.ToString("dd/MM/yyyy")
+            </div>
+
+            <div class="mb-3">
+                <strong>Start Time:</strong>
+                @Model.Event.startTime.ToString(@"hh\:mm")
+            </div>
+
+            <div class="mb-3">
+                <strong>Location:</strong>
+                @Model.Event.location
+            </div>
+
+            @if (!string.IsNullOrEmpty(Model.Event.notes))
+            {
+                <div class="mb-3">
+                    <strong>Notes:</strong>
+                    @Model.Event.notes
+                </div>
+            }
+
+            @{
+                DateTime eventDateTime =
+                    Model.Event.date.Date + Model.Event.startTime;
+            }
+
+            @if (eventDateTime > DateTime.Now)
+            {
+                <div class="mt-4">
+                    <a asp-page="/Member/Player/MarkAttendance"
+                        asp-route-id="@Model.Event.id"
+                        class="btn btn-primary">
+                        Mark Attendance
+                    </a>
+                </div>
+            }
+            else
+            {
+                <div class="alert alert-secondary mt-4">
+                    Attendance can no longer be adjusted for this event.
+                </div>
+            }
+        </div>
+    </div>
+</div>

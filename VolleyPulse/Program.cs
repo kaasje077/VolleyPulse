@@ -1,4 +1,5 @@
 using DAL;
+using DAL.Repo;
 using Logic;
 using Logic.Interfaces;
 
@@ -11,7 +12,9 @@ builder.Services.AddRazorPages();
 
 //Logic
 builder.Services.AddScoped<IEventLogic, EventLogic>();
+builder.Services.AddScoped<IAttendanceLogic, AttendanceLogic>();
 
+//DAL
 builder.Services.AddScoped<IEventRepository>(provider =>
 {
     string connectionString =
@@ -19,6 +22,15 @@ builder.Services.AddScoped<IEventRepository>(provider =>
 
     return new EventRepository(connectionString);
 });
+
+builder.Services.AddScoped<IAttendanceRepository>(provider =>
+{
+    string connectionString =
+    builder.Configuration.GetConnectionString("DefaultConnection");
+
+    return new AttendanceRepository(connectionString);
+});
+
 
 
 var app = builder.Build();

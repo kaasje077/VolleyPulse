@@ -1,0 +1,30 @@
+﻿@page
+@model UI.Pages.Member.Player.MarkAttendanceModel
+
+<input type="hidden" asp-for="id" />
+
+<div class="container mt-4">
+
+    <h2>Mark Attendance</h2>
+
+    <p>
+        Choose whether you will be present or absent.
+    </p>
+
+   <form method="post">
+    <input type="hidden" asp-for="id" />
+ 
+    <button type="submit"
+        asp-page-handler="Present"
+        class="btn btn-success me-2">
+        Present
+    </button>
+ 
+    <button type="submit"
+        asp-page-handler="Absent"
+        class="btn btn-danger">
+        Absent
+    </button>
+</form>
+
+</div>

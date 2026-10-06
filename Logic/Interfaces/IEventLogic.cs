@@ -9,5 +9,6 @@ namespace Logic.Interfaces
     {
         void CreatePractice(Event newEvent, TimeSpan endTime);
         List<Practice> GetAllPractices();
+        Event GetEventById(int eventId);
     }
 }

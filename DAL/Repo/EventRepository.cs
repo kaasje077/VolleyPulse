@@ -4,7 +4,7 @@ using Microsoft.Data.SqlClient;
 using Logic.DTO_s;
 using Logic.Interfaces;
 
-namespace DAL
+namespace DAL.Repo
 {
     public class EventRepository : IEventRepository
     {
@@ -55,9 +55,9 @@ namespace DAL
 
             var cmd = new SqlCommand(
                 @"SELECT e.*, p.endTime
-          FROM Event e
-          INNER JOIN Practice p
-              ON e.id = p.EventID",
+                FROM Event e
+                INNER JOIN Practice p
+                ON e.id = p.EventID",
                 conn);
 
             using var reader = cmd.ExecuteReader();
@@ -81,6 +81,32 @@ namespace DAL
             }
 
             return practices;
+        }
+
+        public Event GetEventById(int eventId)
+        {
+            using var conn = new SqlConnection(_connectionString);
+            conn.Open();
+            var cmd = new SqlCommand(
+                @"SELECT * FROM Event WHERE id = @id",
+                conn);
+            cmd.Parameters.AddWithValue("@id", eventId);
+            using var reader = cmd.ExecuteReader();
+            if (reader.Read())
+            {
+                return new Event
+                {
+                    id = (int)reader["id"],
+                    date = (DateTime)reader["date"],
+                    startTime = (TimeSpan)reader["startTime"],
+                    location = (string)reader["location"],
+                    notes = reader["notes"] == DBNull.Value
+                        ? null
+                        : (string)reader["notes"],
+                    AdminID = (int)reader["AdminID"]
+                };
+            }
+            return null;
         }
     }
 }
