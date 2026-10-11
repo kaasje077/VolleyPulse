@@ -27,9 +27,9 @@ namespace Logic
             return _repo.GetAllPractices();
         }
 
-        public Event GetEventById(int eventId)
+        public Practice GetPracticeById(int eventId)
         {
-            return _repo.GetEventById(eventId);
+            return _repo.GetPracticeById(eventId);
         }
     }
 }

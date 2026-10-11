@@ -83,18 +83,26 @@ namespace DAL.Repo
             return practices;
         }
 
-        public Event GetEventById(int eventId)
+        public Practice GetPracticeById(int eventId)
         {
             using var conn = new SqlConnection(_connectionString);
             conn.Open();
+
             var cmd = new SqlCommand(
-                @"SELECT * FROM Event WHERE id = @id",
+                @"SELECT e.*, p.endTime
+          FROM Event e
+          INNER JOIN Practice p
+              ON e.id = p.EventID
+          WHERE e.id = @id",
                 conn);
+
             cmd.Parameters.AddWithValue("@id", eventId);
+
             using var reader = cmd.ExecuteReader();
+
             if (reader.Read())
             {
-                return new Event
+                return new Practice
                 {
                     id = (int)reader["id"],
                     date = (DateTime)reader["date"],
@@ -103,9 +111,13 @@ namespace DAL.Repo
                     notes = reader["notes"] == DBNull.Value
                         ? null
                         : (string)reader["notes"],
-                    AdminID = (int)reader["AdminID"]
+                    AdminID = (int)reader["AdminID"],
+
+                    EventID = (int)reader["id"],
+                    endTime = (TimeSpan)reader["endTime"]
                 };
             }
+
             return null;
         }
     }

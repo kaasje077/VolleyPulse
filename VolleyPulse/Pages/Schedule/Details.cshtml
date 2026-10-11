@@ -13,37 +13,37 @@
 
             <div class="mb-3">
                 <strong>Date:</strong>
-                @Model.Event.date.ToString("dd/MM/yyyy")
+                @Model.Practice.date.ToString("dd/MM/yyyy")
             </div>
 
             <div class="mb-3">
-                <strong>Start Time:</strong>
-                @Model.Event.startTime.ToString(@"hh\:mm")
+                <strong>Time:</strong>
+                @Model.Practice.startTime.ToString(@"hh\:mm") - @Model.Practice.endTime.ToString(@"hh\:mm")
             </div>
 
             <div class="mb-3">
                 <strong>Location:</strong>
-                @Model.Event.location
+                @Model.Practice.location
             </div>
 
-            @if (!string.IsNullOrEmpty(Model.Event.notes))
+            @if (!string.IsNullOrEmpty(Model.Practice.notes))
             {
                 <div class="mb-3">
                     <strong>Notes:</strong>
-                    @Model.Event.notes
+                    @Model.Practice.notes
                 </div>
             }
 
             @{
                 DateTime eventDateTime =
-                    Model.Event.date.Date + Model.Event.startTime;
+                    Model.Practice.date.Date + Model.Practice.startTime;
             }
 
             @if (eventDateTime > DateTime.Now)
             {
                 <div class="mt-4">
                     <a asp-page="/Member/Player/MarkAttendance"
-                        asp-route-id="@Model.Event.id"
+                        asp-route-id="@Model.Practice.id"
                         class="btn btn-primary">
                         Mark Attendance
                     </a>

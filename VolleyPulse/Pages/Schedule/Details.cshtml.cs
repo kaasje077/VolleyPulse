@@ -16,14 +16,15 @@ namespace UI.Pages.Schedule
             _logic = logic;
         }
 
+        public Logic.DTO_s.Practice Practice { get; private set; }
         public Logic.DTO_s.Event Event { get; private set; }
         public Logic.DTO_s.Attendance Attendance { get; private set; }
 
         public IActionResult OnGet(int id)
         {
-            Event = _logic.GetEventById(id);
+            Practice = _logic.GetPracticeById(id);
 
-            if (Event == null)
+            if (Practice == null)
             {
                 return NotFound();
             }
