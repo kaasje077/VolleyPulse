@@ -24,7 +24,7 @@ namespace DAL.Repo
             conn.Open();
 
             var cmd = new SqlCommand(
-                @"SELECT * FROM Teams",
+                @"SELECT * FROM Team",
                 conn);
 
             using var reader = cmd.ExecuteReader();
