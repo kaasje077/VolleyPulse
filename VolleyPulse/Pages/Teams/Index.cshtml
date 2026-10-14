@@ -1,0 +1,65 @@
+﻿@page
+@model UI.Pages.Teams.IndexModel
+
+@{
+    ViewData["Title"] = "Teams";
+}
+
+<div class="container mt-4">
+    <div class="text-center mb-4">
+        <h1 class="display-5">🏐 Teams</h1>
+        <p class="text-muted">Overview of all registered teams.</p>
+    </div>
+
+    @if (!Model.Teams.Any())
+    {
+        <div class="alert alert-info text-center">
+            No teams found.
+        </div>
+    }
+    else
+    {
+        <div class="row g-4">
+            @foreach (var team in Model.Teams)
+            {
+                <div class="col-md-6 col-lg-4">
+                    <a asp-page="./Details"
+                       asp-route-id="@team.id"
+                       class="text-decoration-none">
+
+                        <div class="card h-100 shadow-sm border-0 team-card">
+                            <div class="card-body">
+                                <h4 class="card-title text-primary mb-3">
+                                    @team.name
+                                </h4>
+
+                                <p class="mb-2">
+                                    <strong>Level:</strong> @team.level
+                                </p>
+
+                            </div>
+
+                            <div class="card-footer bg-white border-top-0">
+                                <span class="text-primary">
+                                    View details →
+                                </span>
+                            </div>
+                        </div>
+
+                    </a>
+                </div>
+            }
+        </div>
+    }
+</div>
+
+<style>
+    .team-card {
+        transition: all 0.2s ease-in-out;
+    }
+
+    .team-card:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 .5rem 1rem rgba(0,0,0,.15) !important;
+    }
+</style>

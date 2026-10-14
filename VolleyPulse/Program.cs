@@ -13,6 +13,7 @@ builder.Services.AddRazorPages();
 //Logic
 builder.Services.AddScoped<IEventLogic, EventLogic>();
 builder.Services.AddScoped<IAttendanceLogic, AttendanceLogic>();
+builder.Services.AddScoped<ITeamLogic, TeamLogic>();
 
 //DAL
 builder.Services.AddScoped<IEventRepository>(provider =>
@@ -31,6 +32,13 @@ builder.Services.AddScoped<IAttendanceRepository>(provider =>
     return new AttendanceRepository(connectionString);
 });
 
+builder.Services.AddScoped<ITeamRepository>(provider =>
+{
+    string connectionString =
+    builder.Configuration.GetConnectionString("DefaultConnection");
+
+    return new TeamRepository(connectionString);
+});
 
 
 var app = builder.Build();

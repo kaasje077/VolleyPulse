@@ -1,7 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
-namespace VolleyPulse.Pages
+namespace UI.Pages.HomePage
 {
     public class IndexModel : PageModel
     {

@@ -2,7 +2,7 @@
 {
     public enum Position
     {
-        aetter,
+        setter,
         libero,
         middleBlocker,
         outsideHitter,

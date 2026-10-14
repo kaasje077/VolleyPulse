@@ -1,12 +1,11 @@
+using Logic.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using DAL;
-using Logic;
 using Logic.DTO_s;
 
-namespace UI.Pages.Member
+namespace UI.Pages.Teams.Member
 {
-    public class IndexModel : PageModel
+    public class DetailsModel : PageModel
     {
         public void OnGet()
         {

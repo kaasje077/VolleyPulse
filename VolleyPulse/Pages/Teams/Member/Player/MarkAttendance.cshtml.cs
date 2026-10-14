@@ -3,7 +3,7 @@ using Logic.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
-namespace UI.Pages.Member.Player
+namespace UI.Pages.Teams.Member.Player
 {
     public class MarkAttendanceModel : PageModel
     {

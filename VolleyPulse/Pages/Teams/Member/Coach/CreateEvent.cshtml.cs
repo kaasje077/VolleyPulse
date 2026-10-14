@@ -2,7 +2,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Logic.Interfaces;
 
-namespace UI.Pages.Member.Admin
+namespace UI.Pages.Teams.Member.Coach
 {
     public class CreatePracticeModel : PageModel
     {
