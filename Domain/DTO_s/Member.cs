@@ -1,8 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using Domain.Enums;
 
-namespace Logic.DTO_s
+namespace Domain.DTO_s
 {
     public class Member
     {
@@ -10,6 +11,7 @@ namespace Logic.DTO_s
         public string name { get; set; }
         public string email { get; set; }
         private DateOnly doB { get; set; }
-        private string passwordHash { get; set; }
+        public string passwordHash { get; set; }
+        public Role Role { get; set; }
     }
 }

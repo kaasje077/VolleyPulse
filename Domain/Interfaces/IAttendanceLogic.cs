@@ -1,11 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-using Logic.DTO_s;
+using Domain.DTO_s;
+using Domain.Interfaces;
 
-namespace Logic.Interfaces
+namespace Domain.Interfaces
 {
-    public interface IAttendanceRepository
+    public interface IAttendanceLogic
     {
         public void MarkAttendance(Attendance attendance);
     }

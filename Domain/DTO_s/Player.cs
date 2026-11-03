@@ -1,13 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using Domain.Enums;
 
-namespace Logic.DTO_s
+namespace Domain.DTO_s
 {
     public class Player : Member
     {
         public int id { get; set; }
-        public Enum? Position { get; set; }
+        public Position Position { get; set; }
         public int number { get; set; }
         public int MemberID { get; set; }
 

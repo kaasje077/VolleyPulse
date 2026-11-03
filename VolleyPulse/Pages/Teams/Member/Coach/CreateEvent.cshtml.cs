@@ -1,6 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using Logic.Interfaces;
+using Domain.Interfaces;
 
 namespace UI.Pages.Teams.Member.Coach
 {
@@ -35,7 +35,7 @@ namespace UI.Pages.Teams.Member.Coach
                 return Page();
             }
 
-            var NewEvent = new Logic.DTO_s.Event
+            var NewEvent = new Domain.DTO_s.Event
             {
                 date = date,
                 startTime = startTime,

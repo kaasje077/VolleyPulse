@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Logic.DTO_s
+namespace Domain.DTO_s
 {
     public class Practice : Event
     {

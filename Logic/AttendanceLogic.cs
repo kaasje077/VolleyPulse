@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-using Logic.Interfaces;
-using Logic.DTO_s;
+using Domain.Interfaces;
+using Domain.DTO_s;
 
 namespace Logic
 {

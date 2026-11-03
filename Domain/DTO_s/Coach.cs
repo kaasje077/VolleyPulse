@@ -2,11 +2,11 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Logic.DTO_s
+namespace Domain.DTO_s
 {
-    public class Admin : Member
+    public class Coach : Member
     { 
-        public int id = 2;
+        public int id { get; set; }
         public string? contactNumber { get; set; }
         public int MemberID { get; set; }
     }

@@ -8,4 +8,7 @@
   <Folder Name="/03. DAL/">
     <Project Path="DAL/DAL.csproj" />
   </Folder>
+  <Folder Name="/04. Domain/">
+    <Project Path="Domain/Domain.csproj" Id="644c3532-07da-4c65-ab49-05d23a997168" />
+  </Folder>
 </Solution>

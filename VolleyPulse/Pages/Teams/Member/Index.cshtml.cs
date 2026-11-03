@@ -2,7 +2,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using DAL;
 using Logic;
-using Logic.DTO_s;
+using Domain.DTO_s;
 
 namespace UI.Pages.Teams.Member
 {

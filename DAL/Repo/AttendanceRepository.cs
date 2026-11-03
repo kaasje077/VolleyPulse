@@ -1,5 +1,5 @@
-﻿using Logic.DTO_s;
-using Logic.Interfaces;
+﻿using Domain.DTO_s;
+using Domain.Interfaces;
 using Microsoft.Data.SqlClient;
 using System;
 using System.Collections.Generic;
@@ -29,7 +29,7 @@ namespace DAL.Repo
                 conn);
 
             cmd.Parameters.AddWithValue("@timeStamp", attendance.timeStamp);
-            cmd.Parameters.AddWithValue("@status", attendance.status);
+            cmd.Parameters.AddWithValue("@status", attendance.Status);
             cmd.Parameters.AddWithValue("@PlayerID", attendance.PlayerID);
             cmd.Parameters.AddWithValue("@EventID", attendance.EventID);
 

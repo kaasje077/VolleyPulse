@@ -1,5 +1,5 @@
-﻿using Logic.DTO_s;
-using Logic.Interfaces;
+﻿using Domain.DTO_s;
+using Domain.Interfaces;
 using Microsoft.Data.SqlClient;
 using System;
 using System.Collections.Generic;

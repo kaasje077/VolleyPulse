@@ -1,7 +1,8 @@
-using Logic.DTO_s;
-using Logic.Interfaces;
+using Domain.DTO_s;
+using Domain.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Domain.Enums;
 
 namespace UI.Pages.Teams.Member.Player
 {
@@ -16,9 +17,9 @@ namespace UI.Pages.Teams.Member.Player
             _eventLogic = eventLogic;
         }
 
-        public Logic.DTO_s.Practice Practice { get; private set; }
-        public Logic.DTO_s.Event Event { get; private set; }
-        public Logic.DTO_s.Attendance Attendance { get; private set; }
+        public Domain.DTO_s.Practice Practice { get; private set; }
+        public Domain.DTO_s.Event Event { get; private set; }
+        public Domain.DTO_s.Attendance Attendance { get; private set; }
 
 
         [BindProperty(SupportsGet = true)]
@@ -29,7 +30,7 @@ namespace UI.Pages.Teams.Member.Player
             Attendance attendance = new Attendance
             {
                 timeStamp = DateTime.Now,
-                status = "Present",
+                Status = Status.present,
                 PlayerID = 1, // temporary
                 EventID = id
             };
@@ -44,8 +45,8 @@ namespace UI.Pages.Teams.Member.Player
             Attendance attendance = new Attendance
             {
                 timeStamp = DateTime.Now,
-                status = "Absent",
-                PlayerID = 1, // temporary
+                Status = Status.absent,
+                PlayerID = 1,
                 EventID = id
             };
 

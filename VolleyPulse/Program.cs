@@ -1,12 +1,19 @@
-using DAL;
 using DAL.Repo;
 using Logic;
-using Logic.Interfaces;
+using Domain.Interfaces;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddRazorPages();
+
+//Session
+builder.Services.AddDistributedMemoryCache();
+
+builder.Services.AddSession(options =>
+{
+    options.IdleTimeout = TimeSpan.FromHours(2);
+});
 
 //Dependency Injection
 
@@ -14,6 +21,7 @@ builder.Services.AddRazorPages();
 builder.Services.AddScoped<IEventLogic, EventLogic>();
 builder.Services.AddScoped<IAttendanceLogic, AttendanceLogic>();
 builder.Services.AddScoped<ITeamLogic, TeamLogic>();
+builder.Services.AddScoped<ILoginLogic, LoginLogic>();
 
 //DAL
 builder.Services.AddScoped<IEventRepository>(provider =>
@@ -40,6 +48,14 @@ builder.Services.AddScoped<ITeamRepository>(provider =>
     return new TeamRepository(connectionString);
 });
 
+builder.Services.AddScoped<ILoginRepository>(provider =>
+{
+    string connectionString =
+    builder.Configuration.GetConnectionString("DefaultConnection");
+
+    return new LoginRepository(connectionString);
+});
+
 
 var app = builder.Build();
 
@@ -60,5 +76,7 @@ app.UseAuthorization();
 app.MapStaticAssets();
 app.MapRazorPages()
    .WithStaticAssets();
+
+app.UseSession();
 
 app.Run();

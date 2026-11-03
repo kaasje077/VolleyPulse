@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-using Logic.DTO_s;
-using Logic.Interfaces;
+using Domain.DTO_s;
+using Domain.Interfaces;
 
 namespace DAL.Repo
 {

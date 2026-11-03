@@ -1,4 +1,4 @@
-﻿namespace Logic.Enums
+﻿namespace Domain.Enums
 {
     public enum Position
     {

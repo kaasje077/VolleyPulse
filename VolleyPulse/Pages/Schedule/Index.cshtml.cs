@@ -1,8 +1,9 @@
-using Logic.Interfaces;
+using Domain.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using Logic.DTO_s;
+using Domain.DTO_s;
 using System.Globalization;
+using Domain.Enums;
 
 namespace UI.Pages.Schedule
 {
@@ -16,6 +17,7 @@ namespace UI.Pages.Schedule
         }
 
         public List<Practice> Practices { get; private set; } = new();
+        public Member Member { get; private set; }
 
         public int CurrentWeek { get; set; }
         public int CurrentYear { get; set; }
