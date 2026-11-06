@@ -10,11 +10,13 @@ namespace UI.Pages.Teams.Member.Player
     {
         private readonly IAttendanceLogic _attendanceLogic;
         private readonly IEventLogic _eventLogic;
+        private readonly IMemberLogic _loginLogic;
 
-        public MarkAttendanceModel(IAttendanceLogic attendanceLogic, IEventLogic eventLogic)
+        public MarkAttendanceModel(IAttendanceLogic attendanceLogic, IEventLogic eventLogic, IMemberLogic loginLogic)
         {
             _attendanceLogic = attendanceLogic;
             _eventLogic = eventLogic;
+            _loginLogic = loginLogic;
         }
 
         public Domain.DTO_s.Practice Practice { get; private set; }
@@ -27,42 +29,52 @@ namespace UI.Pages.Teams.Member.Player
 
         public IActionResult OnPostPresent()
         {
+            int memberId = int.Parse(HttpContext.Session.GetString("MemberId"));
+
+            Domain.DTO_s.Player player = _loginLogic.GetPlayerByMemberId(memberId);
+
             Attendance attendance = new Attendance
             {
                 timeStamp = DateTime.Now,
                 Status = Status.present,
-                PlayerID = 1, // temporary
+                PlayerID = player.id,
                 EventID = id
             };
-
             _attendanceLogic.MarkAttendance(attendance);
 
-            return RedirectToPage("/Schedule/Index");
+            return RedirectToPage("/Schedule/Details", new { id });
         }
 
         public IActionResult OnPostAbsent()
         {
+            int memberId = int.Parse(HttpContext.Session.GetString("MemberId"));
+
+            Domain.DTO_s.Player player = _loginLogic.GetPlayerByMemberId(memberId);
+
             Attendance attendance = new Attendance
             {
                 timeStamp = DateTime.Now,
                 Status = Status.absent,
-                PlayerID = 1,
+                PlayerID = player.id,
                 EventID = id
             };
 
             _attendanceLogic.MarkAttendance(attendance);
 
-            return RedirectToPage("/Schedule/Index");
+            return RedirectToPage("/Schedule/Details", new { id });
         }
 
         public IActionResult OnGet(int id)
         {
             Practice = _eventLogic.GetPracticeById(id);
 
-            if (Practice == null)
-            {
-                return NotFound();
-            }
+            int memberId = int.Parse(HttpContext.Session.GetString("MemberId"));
+
+            var player = _loginLogic.GetPlayerByMemberId(memberId);
+
+            Attendance = _attendanceLogic.GetAttendanceByPlayerAndEvent(
+                player.id,
+                id);
 
             return Page();
         }

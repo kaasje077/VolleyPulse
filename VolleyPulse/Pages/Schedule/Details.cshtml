@@ -39,22 +39,51 @@
                     Model.Practice.date.Date + Model.Practice.startTime;
             }
 
-            @if (eventDateTime > DateTime.Now)
+            <h4>Attendance</h4>
+
+            @if (HttpContext.Session.GetString("MemberRole") != "Coach")
             {
-                <div class="mt-4">
-                    <a asp-page="/Member/Player/MarkAttendance"
-                        asp-route-id="@Model.Practice.id"
-                        class="btn btn-primary">
-                        Mark Attendance
-                    </a>
-                </div>
+                if (Model.Attendance != null)
+                {
+                    <div class="alert alert-info">
+                        You have marked your attendance as
+                        <strong>@Model.Attendance.Status</strong>.
+                    </div>
+                }
+                else if (eventDateTime > DateTime.Now)
+                {
+                    <form method="post"
+                          asp-page="/Teams/Member/Player/MarkAttendance"
+                          asp-page-handler="Present"
+                          class="d-inline">
+
+                        <input type="hidden" name="id" value="@Model.Practice.id" />
+
+                        <button type="submit" class="btn btn-success me-2">
+                            Present
+                        </button>
+                    </form>
+
+                    <form method="post"
+                          asp-page="/Teams/Member/Player/MarkAttendance"
+                          asp-page-handler="Absent"
+                          class="d-inline">
+
+                        <input type="hidden" name="id" value="@Model.Practice.id" />
+
+                        <button type="submit" class="btn btn-danger">
+                            Absent
+                        </button>
+                    </form>
+                }
+                else
+                {
+                    <div class="alert alert-secondary">
+                        Attendance can no longer be adjusted for this event.
+                    </div>
+                }
             }
-            else
-            {
-                <div class="alert alert-secondary mt-4">
-                    Attendance can no longer be adjusted for this event.
-                </div>
-            }
+
         </div>
     </div>
 </div>

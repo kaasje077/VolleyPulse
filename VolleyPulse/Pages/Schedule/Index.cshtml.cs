@@ -17,6 +17,7 @@ namespace UI.Pages.Schedule
         }
 
         public List<Practice> Practices { get; private set; } = new();
+        public List<Competition> Competitions { get; private set; } = new();
         public Member Member { get; private set; }
 
         public int CurrentWeek { get; set; }

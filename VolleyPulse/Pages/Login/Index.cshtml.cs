@@ -7,10 +7,10 @@ namespace UI.Pages.Login
 {
     public class IndexModel : PageModel
     {
-        private readonly ILoginLogic _loginLogic;
-        public IndexModel(ILoginLogic loginLogic)
+        private readonly IMemberLogic _memberLogic;
+        public IndexModel(IMemberLogic memberLogic)
         {
-            _loginLogic = loginLogic;
+            _memberLogic = memberLogic;
         }
         [BindProperty]
         public string Email { get; set; }
@@ -26,7 +26,7 @@ namespace UI.Pages.Login
                 ModelState.AddModelError(string.Empty, "Email and Password are required.");
                 return Page();
             }
-            var member = _loginLogic.AuthenticateMember(Email, Password);
+            var member = _memberLogic.AuthenticateMember(Email, Password);
             if (member == null)
             {
                 ModelState.AddModelError(string.Empty, "Invalid email or password.");
@@ -38,5 +38,6 @@ namespace UI.Pages.Login
             HttpContext.Session.SetString("MemberRole", member.Role.ToString());
             return RedirectToPage("/Schedule/Index");
         }
+        
     }
 }

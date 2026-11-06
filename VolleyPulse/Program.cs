@@ -21,7 +21,7 @@ builder.Services.AddSession(options =>
 builder.Services.AddScoped<IEventLogic, EventLogic>();
 builder.Services.AddScoped<IAttendanceLogic, AttendanceLogic>();
 builder.Services.AddScoped<ITeamLogic, TeamLogic>();
-builder.Services.AddScoped<ILoginLogic, LoginLogic>();
+builder.Services.AddScoped<IMemberLogic, MemberLogic>();
 
 //DAL
 builder.Services.AddScoped<IEventRepository>(provider =>
@@ -48,12 +48,12 @@ builder.Services.AddScoped<ITeamRepository>(provider =>
     return new TeamRepository(connectionString);
 });
 
-builder.Services.AddScoped<ILoginRepository>(provider =>
+builder.Services.AddScoped<IMemberRepository>(provider =>
 {
     string connectionString =
     builder.Configuration.GetConnectionString("DefaultConnection");
 
-    return new LoginRepository(connectionString);
+    return new MemberRepository(connectionString);
 });
 
 

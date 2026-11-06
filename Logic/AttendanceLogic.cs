@@ -19,5 +19,10 @@ namespace Logic
         {
             _repo.MarkAttendance(attendance);
         }
+
+        public Attendance GetAttendanceByPlayerAndEvent(int playerId, int eventId)
+        {
+            return _repo.GetAttendanceByPlayerAndEvent(playerId, eventId);
+        }
     }
 }

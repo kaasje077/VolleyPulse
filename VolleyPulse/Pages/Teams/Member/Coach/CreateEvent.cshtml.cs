@@ -6,11 +6,11 @@ namespace UI.Pages.Teams.Member.Coach
 {
     public class CreatePracticeModel : PageModel
     {
-        private readonly IEventLogic _logic;
+        private readonly IEventLogic _eventLogic;
 
-        public CreatePracticeModel(IEventLogic logic)
+        public CreatePracticeModel(IEventLogic eventLogic)
         {
-            _logic = logic;
+            _eventLogic = eventLogic;
         }
 
         [BindProperty]
@@ -44,7 +44,7 @@ namespace UI.Pages.Teams.Member.Coach
                 AdminID = 2
             };
 
-            _logic.CreatePractice(NewEvent, endTime);
+            _eventLogic.CreatePractice(NewEvent, endTime);
 
             return RedirectToPage("/Schedule/Index");
         }

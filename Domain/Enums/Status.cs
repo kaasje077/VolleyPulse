@@ -2,7 +2,7 @@
 {
     public enum Status
     {
-        present,
-        absent
+        present = 0,
+        absent = 1
     }
 }

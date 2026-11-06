@@ -9,11 +9,15 @@ namespace UI.Pages.Schedule
 {
     public class DetailsModel : PageModel
     {
-        private readonly IEventLogic _logic;
+        private readonly IEventLogic _eventLogic;
+        private readonly IMemberLogic _memberLogic;
+        private readonly IAttendanceLogic _attendanceLogic;
 
-        public DetailsModel(IEventLogic logic)
+        public DetailsModel(IEventLogic eventLogic, IMemberLogic memberLogic, IAttendanceLogic attendanceLogic)
         {
-            _logic = logic;
+            _eventLogic = eventLogic;
+            _memberLogic = memberLogic;
+            _attendanceLogic = attendanceLogic;
         }
 
         public Domain.DTO_s.Practice Practice { get; private set; }
@@ -22,11 +26,22 @@ namespace UI.Pages.Schedule
 
         public IActionResult OnGet(int id)
         {
-            Practice = _logic.GetPracticeById(id);
+            Practice = _eventLogic.GetPracticeById(id);
 
-            if (Practice == null)
+            string role = HttpContext.Session.GetString("MemberRole");
+
+            if (role != "Coach")
             {
-                return NotFound();
+                int memberId = int.Parse(HttpContext.Session.GetString("MemberId"));
+
+                var player = _memberLogic.GetPlayerByMemberId(memberId);
+
+                if (player != null)
+                {
+                    Attendance = _attendanceLogic.GetAttendanceByPlayerAndEvent(
+                        player.id,
+                        id);
+                }
             }
 
             return Page();

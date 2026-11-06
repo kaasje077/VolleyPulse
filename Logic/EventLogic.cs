@@ -18,6 +18,16 @@ namespace Logic
 
         public void CreatePractice(Event newEvent, TimeSpan endTime)
         {
+            if (endTime <= newEvent.startTime)
+            {
+                throw new Exception("End time must be after start time.");
+            }
+
+            if (newEvent.date < DateTime.Today)
+            {
+                throw new Exception("Practice cannot be created in the past.");
+            }
+
             _repo.CreatePractice(newEvent, endTime);
         }
 

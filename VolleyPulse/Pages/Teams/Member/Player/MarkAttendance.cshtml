@@ -5,26 +5,33 @@
 
 <div class="container mt-4">
 
-    <h2>Mark Attendance</h2>
+    
+  <div class="alert alert-info" role="alert">
+    You have already marked your attendance
+  </div>
+    
+  <h2>Mark Attendance</h2>
 
-    <p>
-        Choose whether you will be present or absent.
-    </p>
+  <p>
+     Choose whether you will be present or absent.
+  </p>
 
-   <form method="post">
-    <input type="hidden" asp-for="id" />
- 
-    <button type="submit"
-        asp-page-handler="Present"
-        class="btn btn-success me-2">
-        Present
-    </button>
- 
-    <button type="submit"
-        asp-page-handler="Absent"
-        class="btn btn-danger">
-        Absent
-    </button>
-</form>
+    <form method="post">
+        <input type="hidden" asp-for="id" />
+
+        <button type="submit"
+                asp-page-handler="Present"
+                class="btn btn-success me-2">
+            Present
+        </button>
+
+        <button type="submit"
+                asp-page-handler="Absent"
+                class="btn btn-danger">
+            Absent
+        </button>
+    </form>
+    }
+    
 
 </div>
