@@ -2,7 +2,7 @@ using Domain.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Domain.DTO_s;
-using System.Globalization;
+using System.Globalization; //used for ISOWeek
 using Domain.Enums;
 
 namespace UI.Pages.Schedule
